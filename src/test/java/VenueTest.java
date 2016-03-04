@@ -26,4 +26,20 @@ public class VenueTest {
     Venue savedVenue = Venue.all().get(0);
     assertTrue(newVenue.equals(savedVenue));
   }
+
+  @Test
+  public void save_assignsIdToObject() {
+    Venue newVenue = new Venue("The Social");
+    newVenue.save();
+    Venue savedVenue = Venue.all().get(0);
+    assertEquals(newVenue.getId(), savedVenue.getId());
+  }
+
+  @Test
+  public void find_locatesAllInstancesOfVenueInDatabaseUsingID() {
+    Venue newVenue = new Venue ("AKA Lounge");
+    newVenue.save();
+    Venue savedVenue = Venue.find(newVenue.getId());
+    assertTrue(newVenue.equals(savedVenue));
+  }
 }
