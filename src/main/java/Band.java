@@ -73,13 +73,37 @@ public class Band {
     }
   }
 
-  // public void addVenue (Venue venue) {
-  //   String sql = "INSERT INTO bands_venues (bands_id, venues_id) VALUES (:bands_id, :venues_id)";
-  //   try(Connection con = DB.sql2o.open()) {
-  //     con.createQuery(sql)
-  //       .addParameter("bands_id", this.getId())
-  //       .addParameter("venues_id", venues.getId())
-  //       .executeUpdate();
-  //   }
-  // }
+  public void updateIdBandVenue(int id_bands_venues) {
+    String sql = "UPDATE band SET id_bands_venues = :id_bands_venues WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+        .addParameter("id_bands_venues", id_bands_venues)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public void addVenue (Venue venue) {
+    String sql = "INSERT INTO band_venues (bands_id, venues_id) VALUES (:bands_id, :venues_id)";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+        .addParameter("band_id", this.getId())
+        .addParameter("venues_id", venue.getId())
+        .executeUpdate();
+    }
+  }
+
+  public List<Venue> getVenue() {
+    try(Connection con = DB.sql2o.open()) {
+
+      String sql = "SELECT venue.* FROM band " +
+      "JOIN band_venues ON (band.id = band_venues.band_id) " +
+      "JOIN venue ON (band_titles.venue_id = venue.id) " +
+      "WHERE title.id = :id";
+      List<Venue> venues = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetch(Venue.class);
+      return venues;
+    }
+  }
 }

@@ -1,0 +1,39 @@
+concerts.vtl
+<h2>View Concerts</h2>
+
+<form action="/band" method="post">
+  <div class="form-group">
+    <label for="newBand">Enter a new artist</label>
+    <input type="text" name="newBand" class="form-control" id="newBand" placeholder="Artist Name" required>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<form action="/venue" method="post">
+  <div class="form-group">
+    <label for="newVenue">Enter a new venue</label>
+    <input type="text" name="newVenue" class="form-control" id="newVenue" placeholder="Venue" required>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+<div class="row">
+  <div class="col-sm-6">
+
+    <h3>Artist List</h3>
+    #foreach ($band in $bands)
+    <li><a href="/band/$band.getId()">$band.getBand()</a></li>
+    #end
+  </div>
+
+  <div class="col-sm-6">
+    <h3>Venue List</h3>
+    #foreach ($venue in $venues)
+    <li><a href="/venue/$venue.getId()">$venue.getVenue()</a></li>
+    #end
+  </div>
+</div>
+
+<br>
+Return to <a href="/">Main Page</a>
