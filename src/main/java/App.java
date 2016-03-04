@@ -40,5 +40,26 @@ public class App {
       response.redirect("/concerts");
       return null;
     });
+
+    get("/band/:id", (request, response) -> {
+      HashMap model = new HashMap();
+      int id = Integer.parseInt(request.params("id"));
+      Band band = Band.find(id);
+      model.put("band", band);
+      model.put("allVenues", Venue.all());
+      model.put("template", "templates/band.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/band/:id", (request, response) -> {
+      HashMap model = new HashMap();
+      int bandId = Integer.parseInt(request.queryParams("bandId"));
+      int venueId = Integer.parseInt(request.queryParams("venueName"));
+      Venue venue = Venue.find(venueId);
+      Band band = Band.find(bandId);
+      band.addVenue(venue);
+      response.redirect("/band/" + bandId);
+      return null;
+    });
   }
 }

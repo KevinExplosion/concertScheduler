@@ -1,0 +1,27 @@
+band.vtl
+
+<h2>$band.getBand()</h2>
+
+#if($band.getVenues())
+  #foreach ($venue in $band.getVenues())
+  <li><a href="/venue/$venue.getId()">$venue.getVenue()</a></li>
+  #end
+#end
+
+<form action="/band/$band.getId()" method="post">
+
+  <input id="bandId" name="bandId" type="hidden" value="$band.getId()">
+
+  <label for="newVenue">At which venue(s) will this artist be performing?</label>
+  <select id="newVenue" name="newVenue" type="text">
+    #foreach ($venue in $allVenues)
+    <option value="$venue.getId()">$venue.getVenue()</option>
+    #end
+  </select>
+  <button type="submit">Assign Venue</button>
+</form>
+
+<br>
+Return to <a href="/concerts">concerts</a> page
+<br>
+Return to <a href="/">main</a> page
