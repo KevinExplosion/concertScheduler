@@ -42,4 +42,33 @@ public class VenueTest {
     Venue savedVenue = Venue.find(newVenue.getId());
     assertTrue(newVenue.equals(savedVenue));
   }
+
+  @Test
+  public void updateVenue_updatesVenueInDatabase() {
+    Venue newVenue = new Venue("AKA Lounge");
+    newVenue.save();
+    newVenue.updateVenue("Club Firestone");
+    assertEquals(Venue.all().get(0).getVenue(), ("Club Firestone"));
+  }
+
+  @Test
+  public void deleteVenue_deleteVenueObject() {
+    Venue newVenue = new Venue("Backbooth");
+    newVenue.save();
+    newVenue.delete();
+    assertEquals(Venue.all().size(), 0);
+  }
+  //
+  // @Test
+  // public void addBand_addsBandToVenue() {
+  //   Venue newVenue = new Venue("The Social");
+  //   newVenue.save();
+  //
+  //   Band newBand = new Band("Eastern Youth");
+  //   newBand.save();
+  //
+  //   newVenue.addBand(newBand);
+  //   Band savedBand = newVenue.getBands().get(0);
+  //   assertTrue(newBand.equals(savedBand));
+  // }
 }
