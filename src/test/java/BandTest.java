@@ -42,4 +42,20 @@ public class BandTest {
     Band savedBand = Band.find(newBand.getId());
     assertTrue(newBand.equals(savedBand));
   }
+
+  @Test
+  public void updateBand_updatesBandInDatabase() {
+    Band newBand = new Band("Toto");
+    newBand.save();
+    newBand.updateBand("Abba");
+    assertEquals(Band.all().get(0).getBand(), ("Abba"));
+  }
+
+  @Test
+  public void delete_deletesBandObject() {
+    Band newBand = new Band("Toto");
+    newBand.save();
+    newBand.delete();
+    assertEquals(Band.all().size(), 0);
+  }
 }
