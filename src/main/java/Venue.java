@@ -33,4 +33,14 @@ public class Venue {
       return this.getVenue().equals(newVenue.getVenue());
     }
   }
+
+  public void save() {
+    String sql = "INSERT INTO venues (venue) VALUES (:venue)";
+    try (Connection con = DB.sql2o.open()) {
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("venue", venue)
+        .executeUpdate()
+        .getKey();
+    }
+  }
 }

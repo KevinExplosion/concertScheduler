@@ -18,4 +18,12 @@ public class VenueTest {
     Venue secondVenue = new Venue("The Social");
     assertTrue(firstVenue.equals(secondVenue));
   }
+
+  @Test
+  public void save_addsInstanceOfVenueToDatabase() {
+    Venue newVenue = new Venue("The Social");
+    newVenue.save();
+    Venue savedVenue = Venue.all().get(0);
+    assertTrue(newVenue.equals(savedVenue));
+  }
 }
