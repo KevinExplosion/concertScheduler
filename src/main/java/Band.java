@@ -73,13 +73,13 @@ public class Band {
     }
   }
 
-  public void addVenue (Venue venue) {
-    String sql = "INSERT INTO bands_venues (bands_id, venues_id) VALUES (:bands_id, :venues_id)";
-    try(Connection con = DB.sql2o.open()) {
-      con.createQuery(sql)
-        .addParameter("bands_id", this.getId())
-        .addParameter("venues_id", venues.getId())
-        .executeUpdate();
-    }
-  }
+  // public void addVenue (Venue venue) {
+  //   String sql = "INSERT INTO bands_venues (bands_id, venues_id) VALUES (:bands_id, :venues_id)";
+  //   try(Connection con = DB.sql2o.open()) {
+  //     con.createQuery(sql)
+  //       .addParameter("bands_id", this.getId())
+  //       .addParameter("venues_id", venues.getId())
+  //       .executeUpdate();
+  //   }
+  // }
 }

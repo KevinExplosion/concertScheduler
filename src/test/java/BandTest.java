@@ -59,16 +59,16 @@ public class BandTest {
     assertEquals(Band.all().size(), 0);
   }
 
-  @Test
-  public void addVenue_addsVenuesToBands() {
-    Band newBand = new Band("Toto");
-    newBand.save();
-
-    Venue newVenue = new Venue("Wonder Ballroom");
-    newVenue.save();
-
-    newBand.addVenue(newVenue);
-    Venue savedVenue = newBand.getVenues().get(0);
-    assertTrue(newVenue.equal(savedVenue));
-  }
+  // @Test
+  // public void addVenue_addsVenuesToBands() {
+  //   Band newBand = new Band("Toto");
+  //   newBand.save();
+  //
+  //   Venue newVenue = new Venue("The Social");
+  //   newVenue.save();
+  //
+  //   newBand.addVenue(newVenue);
+  //   Venue savedVenue = newBand.getVenues().get(0);
+  //   assertTrue(newVenue.equal(savedVenue));
+  // }
 }
