@@ -26,4 +26,20 @@ public class BandTest {
     Band savedBand = Band.all().get(0);
     assertTrue(newBand.equals(savedBand));
   }
+
+  @Test
+  public void save_assignsIdToObject() {
+    Band newBand = new Band("Toto");
+    newBand.save();
+    Band savedBand = Band.all().get(0);
+    assertEquals(newBand.getId(), savedBand.getId());
+  }
+
+  @Test
+  public void find_locatesAllInstancesOfBandInDatabaseUsingID() {
+    Band newBand = new Band("Toto");
+    newBand.save();
+    Band savedBand = Band.find(newBand.getId());
+    assertTrue(newBand.equals(savedBand));
+  }
 }
