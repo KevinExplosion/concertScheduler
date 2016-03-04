@@ -3,22 +3,22 @@ import java.util.List;
 
 public class Band {
   private int id;
-  private String band_name;
+  private String band;
 
   public int getId() {
     return id;
   }
 
-  public String getBandName() {
-    return band_name;
+  public String getBand() {
+    return band;
   }
 
-  public Band (String band_name) {
-    this.band_name = band_name;
+  public Band (String band) {
+    this.band = band;
   }
 
   public static List<Band> all() {
-    String sql = "SELECT id, band_name FROM bands ORDER BY band_name";
+    String sql = "SELECT id, band FROM bands ORDER BY band";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Band.class);
     }
@@ -29,8 +29,18 @@ public class Band {
     if(!(otherBand instanceof Band)) {
       return false;
     } else {
-      Band newBandName = (Band) otherBand;
-      return this.getBandName().equals(newBandName.getBandName());
+      Band newBand = (Band) otherBand;
+      return this.getBand().equals(newBand.getBand());
+    }
+  }
+
+  public void save() {
+    String sql = "INSERT INTO bands (band) VALUES (:band)";
+    try(Connection con = DB.sql2o.open()) {
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("band", band)
+        .executeUpdate()
+        .getKey();
     }
   }
 }

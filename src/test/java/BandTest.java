@@ -18,4 +18,12 @@ public class BandTest {
     Band secondBand = new Band("Toto");
     assertTrue(firstBand.equals(secondBand));
   }
+
+  @Test
+  public void save_addsInstanceOfBandToDatabase() {
+    Band newBand = new Band("Toto");
+    newBand.save();
+    Band savedBand = Band.all().get(0);
+    assertTrue(newBand.equals(savedBand));
+  }
 }
