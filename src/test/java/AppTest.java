@@ -21,11 +21,11 @@ public class AppTest extends FluentTest {
       assertThat(pageSource()).contains("Concert Scheduler");
   }
 
-    // @Test
-    // public void fillFormTest() {
-    //     goTo("http://localhost:4567/concerts");
-    //     fill("#newArtist").with("Men at Work");
-    //     submit("#submit");
-    //     assertThat(pageSource()).contains("View Conerts");
-    // }
+  @Test
+  public void fillFormTest() {
+      goTo("http://localhost:4567/concerts");
+      fill("#newBand").with("Men at Work");
+      submit("#submit");
+      assertThat(pageSource()).contains("Men at Work");
+  }
 }
