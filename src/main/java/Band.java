@@ -23,4 +23,14 @@ public class Band {
       return con.createQuery(sql).executeAndFetch(Band.class);
     }
   }
+
+  @Override
+  public boolean equals(Object otherBand) {
+    if(!(otherBand instanceof Band)) {
+      return false;
+    } else {
+      Band newBandName = (Band) otherBand;
+      return this.getBandName().equals(newBandName.getBandName());
+    }
+  }
 }

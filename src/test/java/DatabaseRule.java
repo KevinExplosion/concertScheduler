@@ -15,6 +15,8 @@ public class DatabaseRule extends ExternalResource {
       con.createQuery(deleteBandsQuery).executeUpdate();
       con.createQuery(deleteVenuesQuery).executeUpdate();
       con.createQuery(deleteBandsVenuesQuery).executeUpdate();
+      //Was getting an error on line 17. Remember: 14 and 17 are tied to the
+      //Table bands_venues, NOT the DATABASE band_venues. So band is singular
     }
   }
 }
