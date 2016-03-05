@@ -84,11 +84,11 @@ public class Band {
   }
 
   public void addVenue (Venue venue) {
-    String sql = "INSERT INTO band_venues (bands_id, venues_id) VALUES (:bands_id, :venues_id)";
+    String sql = "INSERT INTO bands_venues (band_id, venue_id) VALUES (:band_id, :venue_id)";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sql)
         .addParameter("band_id", this.getId())
-        .addParameter("venues_id", venue.getId())
+        .addParameter("venue_id", venue.getId())
         .executeUpdate();
     }
   }
@@ -96,10 +96,10 @@ public class Band {
   public List<Venue> getVenue() {
     try(Connection con = DB.sql2o.open()) {
 
-      String sql = "SELECT venue.* FROM band " +
-      "JOIN band_venues ON (band.id = band_venues.band_id) " +
-      "JOIN venue ON (band_titles.venue_id = venue.id) " +
-      "WHERE title.id = :id";
+      String sql = "SELECT venues.* FROM bands " +
+      "JOIN bands_venues ON (bands.id = bands_venues.band_id) " +
+      "JOIN venues ON (bands_venues.venue_id = venues.id) " +
+      "WHERE band.id = :id";
       List<Venue> venues = con.createQuery(sql)
       .addParameter("id", id)
       .executeAndFetch(Venue.class);

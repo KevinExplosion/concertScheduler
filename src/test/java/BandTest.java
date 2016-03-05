@@ -60,7 +60,7 @@ public class BandTest {
   }
 
   @Test
-  public void addVenue_addsVenuesToBands() {
+  public void addVenue_addsVenuesToBand() {
     Band newBand = new Band("Toto");
     newBand.save();
 
@@ -73,7 +73,7 @@ public class BandTest {
   }
 
   @Test
-  public void getVenues_getsVenuesBandsByTitleID() {
+  public void getVenues_getsVenuesBandsByVenueID() {
     Venue newVenue = new Venue("The Social");
     newVenue.save();
 

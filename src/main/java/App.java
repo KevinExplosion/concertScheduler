@@ -23,7 +23,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/band", (request, response) -> { //POSTS TITLES TO BOOKS PAGE
+    post("/band", (request, response) -> { //POSTS BANDS TO VENUES PAGE
       HashMap model = new HashMap();
       String band = request.queryParams("newBand");
       Band newBand = new Band(band);
@@ -32,7 +32,7 @@ public class App {
       return null;
     });
 
-    post("/venue", (request, response) -> { //POSTS AUTHORS TO BOOKS PAGE
+    post("/venue", (request, response) -> { //POSTS VENUES TO BANDS PAGE
       HashMap model = new HashMap();
       String venue = request.queryParams("newVenue");
       Venue newVenue = new Venue(venue);
@@ -54,7 +54,7 @@ public class App {
     post("/band/:id", (request, response) -> {
       HashMap model = new HashMap();
       int bandId = Integer.parseInt(request.queryParams("bandId"));
-      int venueId = Integer.parseInt(request.queryParams("venueName"));
+      int venueId = Integer.parseInt(request.queryParams("venueId"));
       Venue venue = Venue.find(venueId);
       Band band = Band.find(bandId);
       band.addVenue(venue);
@@ -75,7 +75,7 @@ public class App {
     post("/venue/:id", (request, response) -> {
       HashMap model = new HashMap();
       int venueId = Integer.parseInt(request.queryParams("venueId"));
-      int bandId = Integer.parseInt(request.queryParams("bandName"));
+      int bandId = Integer.parseInt(request.queryParams("bandId"));
       Band band = Band.find(bandId);
       Venue venue = Venue.find(venueId);
       venue.addBand(band);

@@ -22,10 +22,18 @@ public class AppTest extends FluentTest {
   }
 
   @Test
-  public void fillFormTest() {
+  public void fillBandFormTest() {
       goTo("http://localhost:4567/concerts");
       fill("#newBand").with("Men at Work");
       submit("#submit");
       assertThat(pageSource()).contains("Men at Work");
+  }
+
+  @Test
+  public void fillVenueFormTest() {
+      goTo("http://localhost:4567/concerts");
+      fill("#newVenue").with("Will's Pub");
+      submit("#submit");
+      assertThat(pageSource()).contains("Will's Pub");
   }
 }
