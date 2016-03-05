@@ -93,13 +93,13 @@ public class Band {
     }
   }
 
-  public List<Venue> getVenue() {
+  public List<Venue> getVenues() {
     try(Connection con = DB.sql2o.open()) {
 
       String sql = "SELECT venues.* FROM bands " +
       "JOIN bands_venues ON (bands.id = bands_venues.band_id) " +
       "JOIN venues ON (bands_venues.venue_id = venues.id) " +
-      "WHERE band.id = :id";
+      "WHERE bands.id = :id";
       List<Venue> venues = con.createQuery(sql)
       .addParameter("id", id)
       .executeAndFetch(Venue.class);

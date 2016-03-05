@@ -68,7 +68,7 @@ public class BandTest {
     newVenue.save();
 
     newBand.addVenue(newVenue);
-    Venue savedVenue = newBand.getVenue().get(0);
+    Venue savedVenue = newBand.getVenues().get(0);
     assertTrue(newVenue.equals(savedVenue));
   }
 
@@ -81,7 +81,7 @@ public class BandTest {
     newBand.save();
 
     newBand.addVenue(newVenue);
-    List savedVenues = newBand.getVenue();
+    List savedVenues = newBand.getVenues();
     assertEquals(savedVenues.size(), 1);
   }
 }

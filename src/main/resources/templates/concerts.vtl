@@ -23,7 +23,11 @@ concerts.vtl
 
     <h3>Artist List</h3>
     #foreach ($band in $bands)
-    <li><a href="/band/$band.getId()">$band.getBand()</a></li>
+    <li><a href="/band/$band.getId()">$band.getBand()</a>
+
+    <p>
+      <input type="checkbox" name="deleteBand" value="$band.getId()" id="$band.getId()">
+    </p></li>
     #end
   </div>
 

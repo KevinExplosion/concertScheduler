@@ -82,5 +82,20 @@ public class App {
       response.redirect("/venue/" + venueId);
       return null;
     });
+
+    post("/concerts/delete/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int venueId = Integer.parseInt(request.params(":id"));
+
+      String[] deletedBandIds =
+      request.queryParamsValues("deleteBand");
+      for (String bandId : deletedBandIds) {
+        Band foundBand = Band.find(Integer.parseInt(bandId));
+        foundBand.delete();
+      }
+      model.put("venue", Venue.find(venueId));
+      model.put("template", "templates/venueBands.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
