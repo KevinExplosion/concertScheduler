@@ -10,11 +10,11 @@
 
 Clone this repository:
 
-$ cd ~/Desktop $ git clone https://github.com/LINK_TO_YOUR_REPO $ cd hairSalon Open terminal and run Postgres:
+$ cd ~/Desktop $ git clone https://github.com/KevinExplosion/concertScheduler $ cd band_venues Open terminal and run Postgres:
 
-$ postgres Open a new tab in terminal and create the hair_salon database:
+$ postgres Open a new tab in terminal and create the band_venues database:
 
-$ psql $ CREATE DATABASE hair_salon; $ TABLES stylists, clients $ STYLISTS COLUMNS id int PRIMARY KEY, lastname varchar, firstname varchar $ CLIENTS COLUMNS id int PRIMARY KEY, lastname varchar, firstname varchar, stylistid int
+$ psql $ CREATE DATABASE band_venues; $ TABLES bands, venues $ BANDS COLUMNS id int PRIMARY KEY, venues varchar $ VENUES COLUMNS id int PRIMARY KEY, venues varchar
 
 Navigate back to the directory where this repository has been cloned and run gradle:
 
