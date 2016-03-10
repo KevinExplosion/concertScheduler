@@ -70,6 +70,11 @@ public class Band {
       con.createQuery(sql)
         .addParameter("id", id)
         .executeUpdate();
+
+    String joinDeleteQuery = "DELETE FROM bands_venues WHERE band_id = :band_id";
+      con.createQuery(joinDeleteQuery)
+        .addParameter("band_id", this.getId())
+        .executeUpdate();
     }
   }
 
@@ -95,7 +100,6 @@ public class Band {
 
   public List<Venue> getVenues() {
     try(Connection con = DB.sql2o.open()) {
-
       String sql = "SELECT venues.* FROM bands " +
       "JOIN bands_venues ON (bands.id = bands_venues.band_id) " +
       "JOIN venues ON (bands_venues.venue_id = venues.id) " +
