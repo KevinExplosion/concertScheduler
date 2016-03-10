@@ -54,7 +54,7 @@ public class App {
     post("/band/:id", (request, response) -> {
       HashMap model = new HashMap();
       int bandId = Integer.parseInt(request.queryParams("bandId"));
-      int venueId = Integer.parseInt(request.queryParams("venueName"));
+      int venueId = Integer.parseInt(request.queryParams("newVenue"));
       Venue venue = Venue.find(venueId);
       Band band = Band.find(bandId);
       band.addVenue(venue);
