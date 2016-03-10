@@ -83,19 +83,27 @@ public class App {
       return null;
     });
 
-    post("/concerts/delete/:id", (request, response) -> {
-      HashMap<String, Object> model = new HashMap<String, Object>();
-      int venueId = Integer.parseInt(request.params(":id"));
-
-      String[] deletedBandIds =
-      request.queryParamsValues("deleteBand");
-      for (String bandId : deletedBandIds) {
-        Band foundBand = Band.find(Integer.parseInt(bandId));
-        foundBand.delete();
-      }
-      model.put("venue", Venue.find(venueId));
-      model.put("template", "templates/venueBands.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
+    // post("/concerts/delete/:id", (request, response) -> {
+    //   HashMap<String, Object> model = new HashMap<String, Object>();
+    //   int venueId = Integer.parseInt(request.params(":id"));
+    //
+    //   String[] deletedBandIds =
+    //   request.queryParamsValues("deleteBand");
+    //   for (String bandId : deletedBandIds) {
+    //     Band foundBand = Band.find(Integer.parseInt(bandId));
+    //     foundBand.delete();
+    //   }
+    //   model.put("venue", Venue.find(venueId));
+    //   model.put("template", "templates/venueBands.vtl");
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
+    post("/delete/band/:id", (request, response) -> {
+      HashMap model = new HashMap();
+      int id = Integer.parseInt(request.queryParams("bandId"));
+      Band band = Band.find(id);
+      band.delete();
+      response.redirect("/");
+      return null;
+    });
   }
 }
